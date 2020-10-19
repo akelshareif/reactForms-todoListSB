@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { v4 as uuid4 } from 'uuid';
 import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
 
@@ -10,8 +9,8 @@ const TodoList = () => {
         setTodos([...todos, { todoText, id }]);
     };
 
-    const deleteTodo = (todo) => {
-        setTodos(todos.filter((t) => t.id !== todo.id));
+    const deleteTodo = (id) => {
+        setTodos(todos.filter((t) => t.id !== id));
     };
 
     return (
@@ -20,7 +19,7 @@ const TodoList = () => {
 
             <ul>
                 {todos.map((todo) => (
-                    <Todo key={uuid4()} text={todo.todoText} handleDelete={() => deleteTodo(todo)} />
+                    <Todo key={todo.id} text={todo.todoText} handleDelete={() => deleteTodo(todo.id)} />
                 ))}
             </ul>
         </div>
